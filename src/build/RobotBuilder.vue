@@ -89,6 +89,8 @@ const selectedRobot = computed(() => ({
   base: availableParts.bases[selectedBaseIndex.value],
 }));
 
+const headBorderColor = computed(() => (selectedRobot.value.head.onSale ? 'red' : '#aaa'));
+
 const addToCart = () => {
   const robot = selectedRobot.value;
   // eslint-disable-next-line max-len
@@ -164,7 +166,7 @@ const selectPrevBase = () => {
 // #endregion
 </script>
 
-<style>
+<style lang="scss" scoped>
 .part {
   position: relative;
   width: 200px;
@@ -172,8 +174,14 @@ const selectPrevBase = () => {
   border: 3px solid #aaa;
 }
 
-.part img {
-  width: 200px;
+.top.part {
+  border: 3px solid v-bind(headBorderColor);
+}
+
+.part {
+  img {
+    width: 200px;
+  }
 }
 
 .top-row {
